@@ -23,15 +23,19 @@ public class IdeaTestProcessor {
 
         int maxPossible = answers.size() * 5;
         this.finalScore = (double) totalPoints / maxPossible * 100;
+    }
+
+    public void showResults(){
         System.out.println("--- STARTING IDEA ANALYSIS ---");
-        System.out.println("Calculation finished for idea: " + ideaName + " - Score: " + finalScore + "%");
+        System.out.println("Calculation finished for idea: " + ideaName + " - Score: " + String.format("%.1f",finalScore) + "%");
+        System.out.println("Recommendation: " + (finalScore > 70 ? "High potential - Go for it!" : "Needs more refinement."));
     }
 
     public void generateReport() {
         String fileName = ideaName + "_report.txt";
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("IDEA TEST REPORT: " + ideaName + "\n");
-            writer.write("Final Score: " + finalScore + "%\n");
+            writer.write("Final Score: " + String.format("%.1f",finalScore) + "%\n");
             writer.write("Recommendation: " + (finalScore > 70 ? "High potential - Go for it!" : "Needs more refinement."));
             System.out.println("Report generated successfully: " + fileName);
         } catch (IOException e) {
@@ -42,7 +46,7 @@ public class IdeaTestProcessor {
     public void saveToDatabase() {
         System.out.println("Connecting to database...");
         System.out.println("Executing: INSERT INTO idea_tests (name, score) VALUES ('"
-                + ideaName + "', " + finalScore + ")");
+                + ideaName + "', " + String.format("%.1f",finalScore) + ")");
         System.out.println("Data saved successfully.");
     }
 
