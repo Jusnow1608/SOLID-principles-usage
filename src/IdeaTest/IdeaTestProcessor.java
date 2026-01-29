@@ -2,6 +2,7 @@ package IdeaTest;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Map;
 
 public class IdeaTestProcessor {
@@ -9,6 +10,7 @@ public class IdeaTestProcessor {
     private String ideaName;
     private Map<String, Integer> answers;
     private double finalScore;
+    private String recommendation;
 
     public IdeaTestProcessor(String ideaName, Map<String, Integer> answers) {
         this.ideaName = ideaName;
@@ -16,19 +18,27 @@ public class IdeaTestProcessor {
     }
 
     public void calculateIdeaPotential() {
-        int totalPoints = 0;
-        for (int score : answers.values()) {
-            totalPoints += score;
-        }
+        double weightedSum = 0;
+        double maxPossibleWeighted = 0;
 
-        int maxPossible = answers.size() * 5;
-        this.finalScore = (double) totalPoints / maxPossible * 100;
+        for (Map.Entry<String, Integer> entry : answers.entrySet()) {
+            String question = entry.getKey();
+            int score = entry.getValue();
+            int weight = 1;
+            if (question.toLowerCase().contains("market") || question.toLowerCase().contains("target")) {
+                weight = 3;
+            }
+            weightedSum += (score * weight);
+            maxPossibleWeighted += (5 * weight);
+        }
+        this.finalScore = (weightedSum / maxPossibleWeighted) * 100;
+        this.recommendation = (finalScore > 70 ? "High potential - Go for it!" : "Needs more refinement.");
     }
 
     public void showResults(){
         System.out.println("--- STARTING IDEA ANALYSIS ---");
         System.out.println("Calculation finished for idea: " + ideaName + " - Score: " + String.format("%.1f",finalScore) + "%");
-        System.out.println("Recommendation: " + (finalScore > 70 ? "High potential - Go for it!" : "Needs more refinement."));
+        System.out.println("Recommendation: " + recommendation);
     }
 
     public void generateReport() {
@@ -36,7 +46,8 @@ public class IdeaTestProcessor {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("IDEA TEST REPORT: " + ideaName + "\n");
             writer.write("Final Score: " + String.format("%.1f",finalScore) + "%\n");
-            writer.write("Recommendation: " + (finalScore > 70 ? "High potential - Go for it!" : "Needs more refinement."));
+            writer.write("Recommendation: " + recommendation + "\n");
+            writer.write("Date: " + LocalDate.now() + "\n");
             System.out.println("Report generated successfully: " + fileName);
         } catch (IOException e) {
             System.err.println("Error while generating report: " + e.getMessage());
@@ -45,8 +56,10 @@ public class IdeaTestProcessor {
 
     public void saveToDatabase() {
         System.out.println("Connecting to database...");
-        System.out.println("Executing: INSERT INTO idea_tests (name, score) VALUES ('"
-                + ideaName + "', " + String.format("%.1f",finalScore) + ")");
+        System.out.println("Executing: INSERT INTO idea_tests (name, score, recommendation, timestamp) VALUES ('"
+                + ideaName + "', " + String.format("%.1f",finalScore) + ", '"
+                + recommendation + "', '"
+                + LocalDate.now() + "')");
         System.out.println("Data saved successfully.");
     }
 
