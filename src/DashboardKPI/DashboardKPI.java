@@ -1,15 +1,25 @@
 package DashboardKPI;
 
+import DashboardKPI.Widgets.DashboardWidget;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DashboardKPI {
 
-private ExternalStatistics externalStatistics = new ExternalStatistics();
-private InternalStatistics internalStatistics = new InternalStatistics();
+private List<DashboardWidget> widgets = new ArrayList<>();
 
-    public void displayStatistics(ExternalSource externalSource, InternalModule internalModule) {
+public void addWidget(DashboardWidget widget){
+    widgets.add(widget);
+}
+
+    public void displayStatistics() {
 
         System.out.println("--- KPI DASHBOARD ---");
-        externalStatistics.displayExternalStatistics(externalSource);
-        internalStatistics.displayInternalStatistics(internalModule);
+        for (DashboardWidget widget : widgets){
+            System.out.println("");
+            widget.render();
+    }
         System.out.println("---------------------");
     }
 }

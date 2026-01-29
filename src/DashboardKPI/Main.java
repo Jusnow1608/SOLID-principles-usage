@@ -1,17 +1,19 @@
 package DashboardKPI;
 
-import javax.xml.transform.Source;
+import DashboardKPI.Widgets.CalendarWidget;
+import DashboardKPI.Widgets.CrmWidget;
+import DashboardKPI.Widgets.GoogleAdsWidget;
+import DashboardKPI.Widgets.IdeaTestWidget;
 
 public class Main {
     public static void main(String[] args) {
         DashboardKPI dashboard = new DashboardKPI();
 
-        dashboard.displayStatistics(ExternalSource.CRM, InternalModule.IDEATEST);
-        System.out.println();
+        dashboard.addWidget(new CrmWidget());
+        dashboard.addWidget(new GoogleAdsWidget());
+        dashboard.addWidget(new IdeaTestWidget());
+        dashboard.addWidget(new CalendarWidget());
 
-        dashboard.displayStatistics(ExternalSource.GOOGLEADS, InternalModule.BUSINESSCALENDAR);
-        System.out.println();
-
-        dashboard.displayStatistics(ExternalSource.GOOGLEANALYTICS, InternalModule.MARKETINGPLANNER);
+        dashboard.displayStatistics();
     }
 }
