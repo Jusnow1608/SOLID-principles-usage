@@ -22,7 +22,12 @@ public class InternalStatistics {
                 System.out.println("Upcoming Tasks: 2 (VAT Settlement, CEIDG Update)");
                 System.out.println("Status: 1 task overdue! Check your deadlines.");
                 break;
-            default: System.out.println("Status: No internal activity recorded today.");
+            case InternalModule.MARKETINGPLANNER:
+                System.out.println("Module: Marketing Planner | Campaign: 'Autumn Sale'");
+                System.out.println("Progress: Posts: 5/10 | Emails: 2/4 | Ads: 0/3");
+                System.out.println("Goal: 30 Sales | Status: In Progress");
+            default:
+                System.out.println("Status: No internal activity recorded today.");
                 break;
         }
     }

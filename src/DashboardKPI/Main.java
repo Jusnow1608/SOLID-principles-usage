@@ -12,6 +12,6 @@ public class Main {
         dashboard.displayStatistics(ExternalSource.GOOGLEADS, InternalModule.BUSINESSCALENDAR);
         System.out.println();
 
-        dashboard.displayStatistics(ExternalSource.GOOGLEANALYTICS, InternalModule.AIASISTANT);
+        dashboard.displayStatistics(ExternalSource.GOOGLEANALYTICS, InternalModule.MARKETINGPLANNER);
     }
 }

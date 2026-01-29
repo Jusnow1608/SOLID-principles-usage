@@ -10,5 +10,6 @@ private InternalStatistics internalStatistics = new InternalStatistics();
         System.out.println("--- KPI DASHBOARD ---");
         externalStatistics.displayExternalStatistics(externalSource);
         internalStatistics.displayInternalStatistics(internalModule);
+        System.out.println("---------------------");
     }
 }
