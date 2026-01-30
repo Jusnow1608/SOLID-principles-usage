@@ -8,6 +8,5 @@ abstract class PlannerElement {
         this.title = title;
     }
 
-    public abstract void markAsDone();
     public abstract void display();
 }

@@ -2,7 +2,7 @@ package MarketingPlanner;
 
 import java.time.LocalDate;
 
-public class CalendarEvent extends PlannerElement{
+public class CalendarEvent extends PlannerElement implements Actionable{
 
     private LocalDate date;
     private boolean confirmed = false;

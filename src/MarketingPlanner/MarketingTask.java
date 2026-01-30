@@ -1,6 +1,6 @@
 package MarketingPlanner;
 
-public class MarketingTask extends PlannerElement{
+public class MarketingTask extends PlannerElement implements Actionable{
     private boolean completed = false;
 
     public MarketingTask(String title) {

@@ -8,24 +8,28 @@ public class Main {
     public static void main (String [] args){
         List<PlannerElement> todayPlanner = new ArrayList<>();
 
-        todayPlanner.add(new MarketingTask("Buying domain .pl"));
-        todayPlanner.add(new CalendarEvent("ZUS payment deadline", LocalDate.of(2026, 2, 10)));
-        todayPlanner.add(new AIStrategyInsight("Focus on marketing on LinkedIn"));
-        
+       MarketingTask marketingTask = new MarketingTask("Buying domain .pl");
+       CalendarEvent calendarEvent =  new CalendarEvent("ZUS payment deadline", LocalDate.of(2026, 2, 10));
+       AIStrategyInsight aIStrategyInsight = new AIStrategyInsight("Focus on marketing on LinkedIn");
+
+        todayPlanner.add(marketingTask);
+        todayPlanner.add(calendarEvent);
+        todayPlanner.add(aIStrategyInsight);
+
         System.out.println("--- YOUR PLAN FOR TODAY ---");
 
         for(PlannerElement plannerElement: todayPlanner){
             plannerElement.display();
         }
-        System.out.println("\n--- RUNNING: COMPLETE ALL ---");
-        try {
-            for (PlannerElement plannerElement : todayPlanner) {
-                plannerElement.markAsDone();
-            }
-        } catch (Exception e) {
-            System.err.println("Application stops to work!");
-            System.err.println("Reason: " + e.getMessage());
-        }
 
+        List<Actionable> actionableItems = new ArrayList<>();
+        actionableItems.add(marketingTask);
+        actionableItems.add(calendarEvent);
+
+
+        System.out.println("\n--- RUNNING: COMPLETE ALL ---");
+            for (Actionable actionableItem : actionableItems) {
+                actionableItem.markAsDone();
+            }
     }
 }
