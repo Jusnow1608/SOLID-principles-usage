@@ -1,6 +1,10 @@
-package AIAssistant;
+package AIAssistant.Assistants;
 
-public class BusinessCoach implements FullAIAssistant{
+import AIAssistant.Services.AnalyticsService;
+import AIAssistant.Services.ChatService;
+import AIAssistant.Services.LearningService;
+
+public class BusinessCoach implements ChatService, AnalyticsService, LearningService {
 
     @Override
     public void askQuestion(String query) {
