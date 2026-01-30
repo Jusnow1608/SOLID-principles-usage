@@ -10,7 +10,8 @@ public class Main {
 
         todayPlanner.add(new MarketingTask("Buying domain .pl"));
         todayPlanner.add(new CalendarEvent("ZUS payment deadline", LocalDate.of(2026, 2, 10)));
-
+        todayPlanner.add(new AIStrategyInsight("Focus on marketing on LinkedIn"));
+        
         System.out.println("--- YOUR PLAN FOR TODAY ---");
 
         for(PlannerElement plannerElement: todayPlanner){
