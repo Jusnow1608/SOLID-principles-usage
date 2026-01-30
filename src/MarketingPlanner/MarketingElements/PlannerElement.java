@@ -1,6 +1,6 @@
-package MarketingPlanner;
+package MarketingPlanner.MarketingElements;
 
-abstract class PlannerElement {
+public abstract class PlannerElement {
 
     protected String title;
 

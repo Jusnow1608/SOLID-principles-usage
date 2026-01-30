@@ -1,6 +1,6 @@
-package MarketingPlanner;
+package MarketingPlanner.MarketingElements;
 
-public class AIStrategyInsight extends PlannerElement{
+public class AIStrategyInsight extends PlannerElement {
 
     public AIStrategyInsight(String content) {
         super(content);

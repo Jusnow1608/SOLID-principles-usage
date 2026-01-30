@@ -1,8 +1,10 @@
-package MarketingPlanner;
+package MarketingPlanner.MarketingElements;
+
+import MarketingPlanner.Actionable;
 
 import java.time.LocalDate;
 
-public class CalendarEvent extends PlannerElement implements Actionable{
+public class CalendarEvent extends PlannerElement implements Actionable {
 
     private LocalDate date;
     private boolean confirmed = false;

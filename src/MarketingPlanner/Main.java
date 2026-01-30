@@ -1,5 +1,10 @@
 package MarketingPlanner;
 
+import MarketingPlanner.MarketingElements.AIStrategyInsight;
+import MarketingPlanner.MarketingElements.CalendarEvent;
+import MarketingPlanner.MarketingElements.MarketingTask;
+import MarketingPlanner.MarketingElements.PlannerElement;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

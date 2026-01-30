@@ -1,6 +1,8 @@
-package MarketingPlanner;
+package MarketingPlanner.MarketingElements;
 
-public class MarketingTask extends PlannerElement implements Actionable{
+import MarketingPlanner.Actionable;
+
+public class MarketingTask extends PlannerElement implements Actionable {
     private boolean completed = false;
 
     public MarketingTask(String title) {
