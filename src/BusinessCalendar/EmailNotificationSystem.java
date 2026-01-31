@@ -1,7 +1,7 @@
 package BusinessCalendar;
 
 public class EmailNotificationSystem {
-    public void send(String msg) {
+    public void sendEmail(String msg) {
         System.out.println("[Email System] " + msg);
     }
 }
