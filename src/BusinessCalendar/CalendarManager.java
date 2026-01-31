@@ -1,10 +1,17 @@
 package BusinessCalendar;
 
 public class CalendarManager {
-    private EmailNotificationSystem emailNotificationSystem = new EmailNotificationSystem();
-    private LocalSQLDatabase localSQLDatabase = new LocalSQLDatabase();
-    private GoogleCalendarClient googleCalendarClient = new GoogleCalendarClient();
-    private SmsGateway smsGateway = new SmsGateway();
+    private EmailNotificationSystem emailNotificationSystem;
+    private LocalSQLDatabase localSQLDatabase;
+    private GoogleCalendarClient googleCalendarClient;
+    private SmsGateway smsGateway;
+
+    public CalendarManager() {
+        this.emailNotificationSystem = new EmailNotificationSystem();
+        this.localSQLDatabase  = new LocalSQLDatabase();
+        this.googleCalendarClient = new GoogleCalendarClient();
+        this.smsGateway = new SmsGateway();
+    }
 
     public void processDailyCalendar(String contactInfo) {
         String sqlTask = localSQLDatabase.getFormalities();
