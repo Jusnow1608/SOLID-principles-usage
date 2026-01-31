@@ -1,29 +1,27 @@
 package BusinessCalendar;
 
-public class CalendarManager {
-    private EmailNotificationSystem emailNotificationSystem;
-    private LocalSQLDatabase localSQLDatabase;
-    private GoogleCalendarClient googleCalendarClient;
-    private SmsGateway smsGateway;
+import BusinessCalendar.Plugins.*;
 
-    public CalendarManager() {
-        this.emailNotificationSystem = new EmailNotificationSystem();
-        this.localSQLDatabase  = new LocalSQLDatabase();
-        this.googleCalendarClient = new GoogleCalendarClient();
-        this.smsGateway = new SmsGateway();
+import java.util.List;
+
+public class CalendarManager {
+    private List<TaskProvider> taskProviders;
+    private NotificationDispatcher notificationDispatcher;
+
+
+    public CalendarManager(List<TaskProvider> taskProviders, NotificationDispatcher notificationDispatcher) {
+        this.taskProviders = taskProviders;
+        this.notificationDispatcher = notificationDispatcher;
     }
 
     public void processDailyCalendar(String contactInfo) {
-        String sqlTask = localSQLDatabase.getFormalities();
-        System.out.println("Taken from SQL database: " + sqlTask);
-        emailNotificationSystem.sendEmail("Task reminder: " + sqlTask);
-
-        System.out.println("---------------------------");
-
-        String googleEvent = googleCalendarClient.fetchRemoteEvents();
-        System.out.println("Taken from Google: " + googleEvent);
-        smsGateway.sendSms(contactInfo, "Event reminder: " + googleEvent);
-
-
+        for (TaskProvider taskProvider : taskProviders) {
+            List<String> tasks = taskProvider.fetchTasks();
+            for (String task : tasks) {
+                System.out.println("Taken from source: " + task);
+                notificationDispatcher.dispatch("Task reminder: " + task, contactInfo);
+                System.out.println("---------------------------");
+            }
+        }
     }
 }
